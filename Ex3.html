@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive</title>
+    <style>
+        .wrapper {
+            position: relative;
+            background-color:rgb(226, 224, 222);
+
+        }
+        .content {
+            display: flex;
+            width: 100%;
+            height: 400px;
+            justify-content: center;
+            align-items: center;
+        }
+        .small {
+            position: absolute;
+            color: white;
+            background-color:red;
+            z-index: -1;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .big {
+            color: white;
+            background-color: chartreuse;
+            text-align: center;
+            font-size: 2rem;
+            padding: 15px 20px;
+        }
+        @media only screen and (max-width:350px){
+            .small{
+                z-index: 2;
+            }
+            .big {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <span class="small">I'm SMALL 😢</span>
+            <span class="big">I'm BIG 😱</span>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation & variable</title>
+
+    <style>
+        .wrapper {
+            background-color: rgb(167, 168, 168);
+            justify-content: center;
+            position: relative;
+            display: flex;
+            height: 500px;
+        }
+        span {
+            margin: 20px;
+        }
+        .drop1 {
+            font-size: 1.5rem;
+            animation: emoji 2s forwards;
+        }
+        .drop2 {
+            font-size: 1.5rem;
+            animation: emoji 4s forwards;
+        }
+        .drop3 {
+            font-size: 1.5rem;
+            animation: emoji 6s forwards;
+        }
+        @keyframes emoji{
+            from{
+                transform: translateY(0px);
+            }
+            to{
+                transform: translateY(250px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <span class="drop1">😊</span>
+        <span class="drop2">😜</span>
+        <span class="drop3">🤩</span>
+    </div>
+</body>
+</html>
