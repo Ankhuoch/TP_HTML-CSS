@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Ex1.css">
+    <title>Book_shop</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form autocomplete="off" onsubmit="onFormSubmit()">
+            <div class="input_infor">
+                <div class="header-add">Add New books</div>
+
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name_book" placeholder="........">
+                <label for="price">Price</label>
+                <input type="text" name="price" id="price_book" placeholder="........">
+                <label for="category">Category</label>
+                <input type="text" name="category" id="category_book" placeholder="........">
+
+
+                <button type="submit" class="add_book">Add</button>
+                <button type="submit" class="edit_book">Update</button>
+
+            </div>
+        </form>
+        <div class="home" id="add_items">
+        </div>
+    </div>
+    <script async src="./Ex1.js"></script>
+</body>
+</html>
