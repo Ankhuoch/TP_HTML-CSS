@@ -9,24 +9,37 @@
 </head>
 <body>
     <div class="wrapper">
-        <form autocomplete="off" onsubmit="onFormSubmit()">
-            <div class="input_infor">
-                <div class="header-add">Add New books</div>
+        <div class="input-wrapper">
+            <div class="input-form-wrapper">
+                <div>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" placeholder="c programming"><br>
+                    <label for="category">Category:</label><br>
+                    <input type="text" id="category" name="category" placeholder="coding">
+                    <label for="price">Price:</label><br>
+                    <input type="text" id="price" name="price" placeholder="1,000 riel"><br>
 
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name_book" placeholder="........">
-                <label for="price">Price</label>
-                <input type="text" name="price" id="price_book" placeholder="........">
-                <label for="category">Category</label>
-                <input type="text" name="category" id="category_book" placeholder="........">
-
-
-                <button type="submit" class="add_book">Add</button>
-                <button type="submit" class="edit_book">Update</button>
-
+                    <button type="button" onclick="onSubmit()">Add</button>
+                </div>
             </div>
-        </form>
-        <div class="home" id="add_items">
+        </div>
+        <div class="list-wrapper">
+            <div id="grid">
+                <div class="box">
+                    <div class="box-action-wrapper">
+                        <button type="button" onclick="onDelete()">Delete</button>
+                        <button type="button" onclick="onUpdate()">Change name</button>
+                    </div>
+                    <div class="book-icon-wrapper">
+                        <img src="./book_icon.png" alt="#">
+                    </div>
+                    <div class="book-info-wrapper">
+                        <span>Name:</span><br/>
+                        <span>Price:</span><br/>
+                        <span>Category:</span><br/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script async src="./Ex1.js"></script>

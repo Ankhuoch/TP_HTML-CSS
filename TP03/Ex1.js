@@ -1,99 +1,61 @@
-var selectedRow = null;
-let x = -1;
-var names = [];
-var price = [];
-var category = [];
-let header = document.getElementsByClassName("header-add")[0];
+var books = [
+    { name: "Book I1", price: 100, category: "English"},
+    { name: "Book I2", price: 100, category: "English"},
+]
 
-function onFormSubmit(e) {
-    event.preventDefault();
-    var formData = readFormData();
-    if (selectedRow === null) {
-        insertNewRecord(formData);
-        console.log("hello")
-    } else {
-        updateRecord(formData);
+function renderList() {
+    let bookGrideDiv = document.getElementById('grid')
+    let boxes = ''
+    bookGrideDiv.innerHTML = ''
+    books.forEach((item, i) => {
+        boxes += `
+        <div class = "box">
+            <div box-action-wrapper>
+                <button onclick="onDelete('${i}')">Delete</button>
+                <button onclick="onUpdate('${i}')">Change name</button>
+            </div>
+            <div class="book-icon-wrapper">
+                <img src="./book_icon.png" alt="#">
+            </div>
+            <div class="book-info-wrapper">
+                <span>Name: ${item.name}</span> <br/>
+                <span>Price: ${item.price} riel</span> <br/>
+                <span>Category: ${item.category}</span> <br/>
+            </div>
+        </div>
+        `
+    })
+    bookGrideDiv.innerHTML = boxes
+}
+
+renderList()
+
+function onSubmit() {
+    const name = document.getElementById('name').value
+    const price = document.getElementById('price').value
+    const category = document.getElementById('category').value
+
+    books.push({ name, price, category })
+
+    renderList()
+}
+
+function onDelete(index) {
+    books.splice(index, 1);
+    renderList()
+}
+
+function onUpdate(index) {
+    const selectedbook = books[index]
+    let newBookName = prompt("Please update a new book name", selectedbook.name);
+    if (newBookName) {
+        books[index]['name'] = newBookName
+
+        renderList()
+        alert("Book name is update");
     }
-    resetForm();
-}
 
-//clear placeholder
-document.querySelector('.add_book').placeholder = '';
-
-//Retrieve the data
-function readFormData() {
-    var formData = {};
-    formData["name_book"] = document.getElementById("name_book").value;
-    formData["price_book"] = document.getElementById("price_book").value;
-    formData["category_book"] = document.getElementById("category_book").value;
-
-    return formData;
-}
-data = [{name: "name_book"},{price: "price_book"},{category: "category_book"}]
- window.localStorage.setItem('books', JSON.stringify(data))
-
- const storedbooks = localStorage.getItem('books')
-
- console.log(JSON.parse(storedbooks));
-//Insert the data
-function insertNewRecord(data) {
-    names[x + 1] = data.name_book;
-    price[x + 1] = data.price_book;
-    category[x + 1] = data.category_book;
-
-    document.getElementById("add_items").innerHTML +=
-        `<div class="items">
-                        <div class="button">
-                            <button id="${parseInt(x+1)}" class="deletBtn" onclick="deleteBook(this.id)">Delete</button>
-                            <button id="${parseInt(x+1)}" class="changeBtn" onclick="changeBook(this.id)">Change name</button>
-                        </div>
-                        <img src="./book_icon.png" alt="#">
-                        <div class="name" data="${data.name_book}">Name : ${data.name_book}</div>
-                        <div class="price">Price : ${data.price_book} riel</div>
-                        <div class="category">Category : ${data.category_book}</div>
-                        
-                    </div>`;
-    x++;
-}
-
-//Change the data
-function changeBook(id) {
-    header.innerHTML = "Edit information";
-    header.style.backgroundColor = "rgb(23, 144, 196)";
-
-
-    selectedRow = id;
-    document.getElementsByClassName("edit_book")[0].style.visibility = 'visible';
-    document.getElementsByClassName("add_book")[0].style.visibility = 'hidden';
-
-    document.getElementById('name_book').value = names[id];
-    document.getElementById('price_book').value = price[id];
-    document.getElementById('category_book').value = category[id];
-}
-
-function updateRecord(formData) {
-    document.getElementsByClassName("name")[selectedRow].innerHTML = "Name : " + formData.name_book;
-    document.getElementsByClassName("price")[selectedRow].innerHTML = "Price : " + formData.price_book + " riel";
-    document.getElementsByClassName("category")[selectedRow].innerHTML = "Category : " + formData.category_book;
-    document.getElementsByClassName("edit_book")[0].style.visibility = 'hidden';
-    document.getElementsByClassName("add_book")[0].style.visibility = 'visible';
-
-    document.getElementsByClassName("header-add")[0].innerHTML = "Add New Books";
-    header.style.backgroundColor = "rgb(23, 144, 196)";
-    selectedRow = null;
-}
-
-//delete
-function deleteBook(id) {
-    console.log(id);
-    if (confirm('Do you want to delete this book?')) {
-        document.getElementsByClassName('items')[id].hidden = true;
+    if (newBookName == '') {
+        alert("Book name is required");
     }
-    resetForm();
-}
-
-function resetForm() {
-    document.getElementById('name_book').value = '';
-    document.getElementById('price_book').value = '';
-    document.getElementById('category_book').value = '';
 }

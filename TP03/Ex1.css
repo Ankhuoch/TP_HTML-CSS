@@ -1,13 +1,12 @@
 body {
-    margin: 0;
+    margin: 0px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 .wrapper {
-    background-color: rgb(144, 146, 146);
+    background-color: rgb(245, 248, 248);
 }
-.input_infor {
+.input-wrapper {
     height: 97%;
     width: 300px;
     background-color: rgb(237, 249, 250);
@@ -15,17 +14,7 @@ body {
     padding: 10px;
 }
 
-.input_infor > div {
-    text-align: center;
-    color: white;
-    background-color: rgb(23, 144, 196);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    padding-top: 10px;
-    height: 30px;
-    border-radius: 5px;
-}
-.input_infor input[type=text] {
+.input-form-wrapper input[type=text] {
     width: 100%;
     border: 1px solid rgb(204, 204, 207);
     border-radius: 4px;
@@ -34,75 +23,34 @@ body {
     padding: 8px;
     box-sizing: border-box;
 }
-.input_infor .edit_book {
-    visibility: hidden;
-}
-.add_book,
-.edit_book {
-    background-color: rgb(23, 144, 196);
-    color: white;
-    height: 25px;
-    width: 50px;
-    font: bold 1.0rem;
-    height: 30px;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-.edit_book {
-    background-color: rgb(23, 144, 196);
-}
-.home {
+
+.list-wrapper {
     height: auto;
     width: 800px;
+    top: 0px;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 330px;
-    background-color: rgb(237, 249, 250);
-}
-.home .items {
-    text-align: center;
-    width: 30%;
-    height: 300px;
-    margin: 1%;
-    margin-left: 1%;
-    background-color: rgb(253, 253, 253);
-    box-shadow: rgb(144, 146, 146) 0px 4px 10px;
-}
-
-.items>img {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-.items .name,
-.price,
-.category {
-    text-align: start;
-    margin-left: 10px;
-    padding-top: 5px;
-}
-
-.button {
-    margin-top: 10px;
-    margin-left: 50px;
-}
-
-.button .changeBtn,
-.deletBtn {
+    margin-left: 350px;
     border-radius: 5px;
-    background-color: rgb(15, 142, 216);
-    color: white;
-    height: 30px;
+    background-color: #ffffff;
 }
-.deletBtn {
-    margin-left: 2px;
-
-}
-.edit_book {
-    margin-left: -55px;
+.list-wrapper .grid {
+    background-color: rgb(0, 238, 255);
+    padding-top: 10px;
     text-align: center;
-    width: 60px;
+    height: 35px;
+    width: 780px;
+    margin: 10px 0 10px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
-
-.items>img {
-    height: 130px;
+.box {
+    box-shadow: 3px 3px 2px 0px rgba(50, 50, 50, 0.5);
+}
+img {
+    width: 120px;
+    margin: 10px 20px;
+}
+.book-infor-wrapper {
+    padding: 5px;
 }
