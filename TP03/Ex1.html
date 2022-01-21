@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Ex1.css">
+    <title>Book_shop</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="input-wrapper">
+            <div class="input-form-wrapper">
+                <div>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" placeholder="c programming"><br>
+                    <label for="category">Category:</label><br>
+                    <input type="text" id="category" name="category" placeholder="coding">
+                    <label for="price">Price:</label><br>
+                    <input type="text" id="price" name="price" placeholder="1,000 riel"><br>
+
+                    <button type="button" onclick="onSubmit()">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-wrapper">
+            <div id="grid">
+                <div class="box">
+                    <div class="box-action-wrapper">
+                        <button type="button" onclick="onDelete()">Delete</button>
+                        <button type="button" onclick="onUpdate()">Change name</button>
+                    </div>
+                    <div class="book-icon-wrapper">
+                        <img src="./book_icon.png" alt="#">
+                    </div>
+                    <div class="book-info-wrapper">
+                        <span>Name:</span><br/>
+                        <span>Price:</span><br/>
+                        <span>Category:</span><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script async src="./Ex1.js"></script>
+</body>
+</html>
