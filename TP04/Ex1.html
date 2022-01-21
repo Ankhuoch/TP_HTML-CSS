@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            width: 300px;
+            height: 600px;
+            background-color: rgb(146, 201, 206);
+            text-align: center;
+        }
+        .next-container {
+            position: relative;
+            top: 180px;
+            left: 2px;
+        }
+        .next-container h1 {
+            color: rgb(9, 9, 100);
+        }
+        span {
+            color: green;
+            font-size: 5rem;
+            padding: 20px;
+        }
+        button {
+            outline: none;
+            border: 1px solid rgb(126, 125, 125);
+            padding: 7px;
+            border-radius: 5px;
+            margin: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: rgb(112, 110, 110);
+        }
+        .active{
+            background-color: black;
+            color: aliceblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="next-container">
+            <h1>Counter</h1>
+            <span id="counter">0</span>
+            <div>
+                <button class="active" onclick="decrease()">Decrease</button>
+                <button onclick="reset()">Reset</button>
+                <button onclick="increase()">Increase</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+        $(document).on('click', 'button', function(){
+            $(this).addClass('active').siblings().removeClass('active')
+        })
+
+        var num = 0;
+        function increase() {
+            num += 1;
+            document.getElementById("counter").innerHTML = num;
+        };
+        function decrease() {
+            num -= 1;
+            document.getElementById("counter").innerHTML = num;
+        };
+        function reset() {
+            num = 0;
+            document.getElementById("counter").innerHTML = num;
+        };
+    </script>
+</body>
+</html>

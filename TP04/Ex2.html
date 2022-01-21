@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random_color</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            background-color: rgb(238, 237, 236);
+            height: 60px;
+            display: grid;
+            place-items: center;
+        }
+        .container h4 {
+            color: deepskyblue;
+            margin-left: 20px;
+        }
+        .next-container {
+            text-align: center;
+        }
+        .next-container h2 {
+            background: #222;
+            color:  #fff;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 2.5rem;
+        }
+        .btn {
+            text-align: center;
+        }
+        .btn {
+            outline: none;
+            font-size: 1rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 5px;
+            margin: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: rgb(22, 21, 21);
+        }
+        .btn:hover {
+            color: #fff;
+            background:  #222;
+        }
+        .active{
+            background-color: black;
+            color: aliceblue;
+        }
+        .display {
+            background: #fff;
+            height: 20rem;
+            display: grid;
+            align-items: center;
+            box-shadow:0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4>Random Color Generatoe</h4>
+        <div class="next-container">
+            <h2>Background Color: <span class="color">#0082e6</span></h2>
+            <div>
+                <button class="btn generate">Generate</button>
+                <button class="btn reset">Reset</button>
+            </div>
+            <div class="color"></div>
+        </div>
+        <div class="display">
+            <span class="color"></span>
+        </div>
+    </div>
+    <script>
+        const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+        const btns = document.querySelectorAll(".btn");
+        const color = document.querySelector(".color");
+
+
+        btns.forEach(function(btn){
+            btn.addEventListener("click", function (e) {
+                const styles = e.currentTarget.classList;
+                let hexColor = "#";
+            for (let i = 0; i < 6; i++) {
+                if (styles.contains("generate")){
+                    hexColor += hex[getRandomNumber()];
+                }else {
+                        hexColor = "#2336FB";
+                }
+            }
+                color.textContent = hexColor;
+                document.body.style.backgroundColor = hexColor;
+            });
+        });
+        function getRandomNumber() {
+            return Math.floor(Math.random() * hex.length);
+        }
+    </script>
+</body>
+</html>
