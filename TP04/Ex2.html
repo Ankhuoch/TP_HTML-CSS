@@ -101,6 +101,44 @@
         function getRandomNumber() {
             return Math.floor(Math.random() * hex.length);
         }
+
+        class Color {
+            records = []
+            constructor() {
+                // To do
+                //- load data from local storage
+                
+            }
+
+            genRandomColor(){
+                //HEX: 0-9, A-F
+                let hexArr = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F']
+
+                // let genIndex = this.genRandNum(hexArr.length)
+                let newStr = '#';
+                for (let i =0 ; i < 6; i++) {
+                    newStr += hexArr[this.genRandNum(hexArr.length)];
+                }
+
+                return newStr
+            }
+            genRandRGBColor() {
+                const r = this.genRandNum(255);
+                const g = this.genRandNum(255);
+                const b = this.genRandNum(255);
+
+                return {r, g, b}
+            }
+            genRandNum(maxVal){
+                //Get rand number btw
+                return Math.floor(Math.random() * maxVal);
+            }
+        }
+
+        const obj = new Color();
+        // console.log("GenColor: ", obj.genRandomColor());
+        // console.log("GenNum: ", obj.genRandNum());
+
     </script>
 </body>
 </html>
