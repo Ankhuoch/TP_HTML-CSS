@@ -24,10 +24,6 @@ function check_form() {
  return false;
 }
 
-function logout_page() {
-    window.location.href= "Ex2.html";
-}
-
 
 //Cookie 
 function setCookie(name,value,days) {

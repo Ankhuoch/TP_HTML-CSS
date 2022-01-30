@@ -59,3 +59,37 @@ function onUpdate(index) {
         alert("Book name is required");
     }
 }
+
+// do localStorage
+
+localStorage.books = JSON.stringify(books); // store data
+
+// add new book
+    //get array from local storage
+let storedBooks = JSON.parse(localStorage.books)
+storedBooks.push({name: "Book I3", price: 100, category: "English"});
+storedBooks.push({name: "Book I4", price: 100, category: "English"});
+
+// console.log(storedBooks);
+// Render into HTML
+let html = ''
+storedBooks.forEach(book => {
+    html += `<div>${book['name']}</div>`
+});
+
+console.log(html);
+document.getElementById('listWrapper').innerHTML = " "
+
+// save back to local storage
+localStorage.books = JSON.stringify(storedBooks);
+
+// Remove/Upadate/Delete a book
+// get array from local storage
+// Remove/Upadate/Delete operation
+// Render into html
+// Save back to local storage
+
+
+
+// const storedBooks = JSON.parse(localStorage.books)
+// console.log(storedBooks);
