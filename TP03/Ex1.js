@@ -36,12 +36,23 @@ function onSubmit() {
     const category = document.getElementById('category').value
 
     books.push({ name, price, category })
+    localStorage.books = JSON.stringify(books);
+    let storedBooks = JSON.parse(localStorage.books)
+    storedBooks.push({name, price, category});
+    localStorage.books = JSON.stringify(storedBooks);
 
+    let html = ''
+    storedBooks.forEach(book => {
+        html += `<div>${book['name']}</div>`
+    });
+    document.getElementsByClassName('list-wrapper').innerHTML = " ";
+    localStorage.books = JSON.stringify(storedBooks);
     renderList()
 }
 
 function onDelete(index) {
     books.splice(index, 1);
+    localStorage.removeItem(index);
     renderList()
 }
 
@@ -50,7 +61,7 @@ function onUpdate(index) {
     let newBookName = prompt("Please update a new book name", selectedbook.name);
     if (newBookName) {
         books[index]['name'] = newBookName
-
+        localStorage.books = JSON.stringify(books);
         renderList()
         alert("Book name is update");
     }
@@ -62,26 +73,26 @@ function onUpdate(index) {
 
 // do localStorage
 
-localStorage.books = JSON.stringify(books); // store data
+// localStorage.books = JSON.stringify(books); // store data
 
-// add new book
-    //get array from local storage
-let storedBooks = JSON.parse(localStorage.books)
-storedBooks.push({name: "Book I3", price: 100, category: "English"});
-storedBooks.push({name: "Book I4", price: 100, category: "English"});
+// // add new book
+//     //get array from local storage
+// let storedBooks = JSON.parse(localStorage.books)
+// storedBooks.push({name: "Book I3", price: 100, category: "English"});
+// storedBooks.push({name: "Book I4", price: 100, category: "English"});
 
-// console.log(storedBooks);
-// Render into HTML
-let html = ''
-storedBooks.forEach(book => {
-    html += `<div>${book['name']}</div>`
-});
+// // console.log(storedBooks);
+// // Render into HTML
+// let html = ''
+// storedBooks.forEach(book => {
+//     html += `<div>${book['name']}</div>`
+// });
 
-console.log(html);
-document.getElementById('listWrapper').innerHTML = " "
+// console.log(html);
+// document.getElementById('listWrapper').innerHTML = " "
 
-// save back to local storage
-localStorage.books = JSON.stringify(storedBooks);
+// // save back to local storage
+// localStorage.books = JSON.stringify(storedBooks);
 
 // Remove/Upadate/Delete a book
 // get array from local storage
