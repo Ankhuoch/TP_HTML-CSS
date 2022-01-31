@@ -55,11 +55,11 @@
     <div class="container">
         <div class="next-container">
             <h1>Counter</h1>
-            <span id="counter">0</span>
+            <span class="counter">0</span>
             <div>
-                <button class="active" onclick="decrease()">Decrease</button>
-                <button onclick="reset()">Reset</button>
-                <button onclick="increase()">Increase</button>
+                <button class="active" id="decreaseBtn">Decrease</button>
+                <button id="resetBtn">Reset</button>
+                <button id="increaseBtn">Increase</button>
             </div>
         </div>
     </div>
@@ -68,20 +68,54 @@
         $(document).on('click', 'button', function(){
             $(this).addClass('active').siblings().removeClass('active')
         })
+        class counter {
+            number = 0;
+            constructor(num) {
+                this.number = num;
+                console.log(this.number)
+            }
+            decrease() {
+                this.number--;
+                return this.number;
+            }
+            increase() {
+                this.number++;
+                return this.number;
+            }
 
-        var num = 0;
-        function increase() {
-            num += 1;
-            document.getElementById("counter").innerHTML = num;
-        };
-        function decrease() {
-            num -= 1;
-            document.getElementById("counter").innerHTML = num;
-        };
-        function reset() {
+            reset() {
+                this.number = 0;
+                return this.number;
+            }
+        }
+        let num = JSON.parse(localStorage.getItem('num'));
+        if (!num) {
             num = 0;
-            document.getElementById("counter").innerHTML = num;
-        };
+            var myCounter = new counter(num);
+        } else {
+            document.getElementsByClassName('counter')[0].innerHTML = `<span id="counter">${num}</span>`;
+            var myCounter = new counter(num);
+        }
+
+        window.addEventListener('click', function(event) {
+            if (event.target.id == 'resetBtn') {
+                let res = myCounter.reset();
+                setLocalstorage(res);
+                document.getElementsByClassName('counter')[0].innerHTML = `<span id="counter">${res}</span>`;
+            } else if (event.target.id == 'increaseBtn') {
+                let res = myCounter.increase();
+                setLocalstorage(res);
+                document.getElementsByClassName('counter')[0].innerHTML = `<span id="counter">${res}</span>`;
+            } else if (event.target.id == 'decreaseBtn') {
+                let res = myCounter.decrease();
+                setLocalstorage(res);
+                document.getElementsByClassName('counter')[0].innerHTML = `<span id="counter">${res}</span>`;
+            }
+        });
+
+        let setLocalstorage = (value) => {
+            localStorage.setItem('num', `${value}`);
+        }
     </script>
 </body>
 </html>
