@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Ex1.css">
+    <title>Book_shop</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrapper {
+            background-color: rgb(71, 73, 73);
+        }
+        .input-wrapper {
+            height: 97%;
+            width: 300px;
+            background-color: rgb(249, 250, 250);
+            position: fixed;
+            padding: 10px;
+        }
+
+        .input-form-wrapper input[type=text] {
+            width: 100%;
+            border: 1px solid rgb(204, 204, 207);
+            border-radius: 4px;
+            margin: 8px 0;
+            outline: none;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .list-wrapper {
+            height: auto;
+            width: 800px;
+            top: 0px;
+            margin-left: 350px;
+            border-radius: 5px;
+            background-color: #a5a1a1;
+        }
+        .list-wrapper .grid {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+        .box {
+            display: inline-grid;
+            margin: 2px;
+            margin-left: 1px;
+            width: 20%;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 3px 3px 2px 0px rgba(50, 50, 50, 0.5);
+            border: 1px solid rgba(212, 211, 211, 0.8);
+        }
+        img {
+            width: 120px;
+            margin: 10px 20px;
+        }
+        .book-infor-wrapper {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="input-wrapper">
+            <div class="input-form-wrapper">
+                <div>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" placeholder="c programming"><br>
+                    <label for="category">Category:</label><br>
+                    <input type="text" id="category" name="category" placeholder="coding">
+                    <label for="price">Price:</label><br>
+                    <input type="text" id="price" name="price" placeholder="1,000 riel"><br>
+
+                    <button type="button" onclick="onSubmit()">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-wrapper">
+            <div id="grid">
+                <div class="box">
+                    <div class="box-action-wrapper">
+                        <button type="button" onclick="onDelete()">Delete</button>
+                        <button type="button" onclick="onUpdate()">Change name</button>
+                    </div>
+                    <div class="book-icon-wrapper">
+                        <img src="./book_icon.png" alt="#">
+                    </div>
+                    <div class="book-info-wrapper">
+                        <span>Name:</span><br/>
+                        <span>Price:</span><br/>
+                        <span>Category:</span><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var books = [
+        { name: "Book I1", price: 100, category: "English"},
+        { name: "Book I2", price: 100, category: "English"},
+    ]
+
+    function renderList() {
+        let bookGrideDiv = document.getElementById('grid')
+        let boxes = ''
+        bookGrideDiv.innerHTML = ''
+        books.forEach((item, i) => {
+            boxes += `
+            <div class = "box">
+                <div box-action-wrapper>
+                    <button onclick="onDelete('${i}')">Delete</button>
+                    <button onclick="onUpdate('${i}')">Change name</button>
+                </div>
+                <div class="book-icon-wrapper">
+                    <img src="./book_icon.png" alt="#">
+                </div>
+                <div class="book-info-wrapper">
+                    <span>Name: ${item.name}</span> <br/>
+                    <span>Price: ${item.price} riel</span> <br/>
+                    <span>Category: ${item.category}</span> <br/>
+                </div>
+            </div>
+            `
+        })
+        bookGrideDiv.innerHTML = boxes
+    }
+
+    renderList()
+
+    function onSubmit() {
+        const name = document.getElementById('name').value
+        const price = document.getElementById('price').value
+        const category = document.getElementById('category').value
+
+        books.push({ name, price, category })
+
+        renderList()
+    }
+
+    function onDelete(index) {
+        books.splice(index, 1);
+        renderList()
+    }
+
+    function onUpdate(index) {
+        const selectedbook = books[index]
+        let newBookName = prompt("Please update a new book name", selectedbook.name);
+        if (newBookName) {
+            books[index]['name'] = newBookName
+
+            renderList()
+            alert("Book name is update");
+        }
+
+        if (newBookName == '') {
+            alert("Book name is required");
+        }
+    }
+    </script>
+</body>
+</html>

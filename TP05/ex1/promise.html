@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input type="text" name = "userID" id="user-id">
+        <button onclick="findUser()">Find</button>
+        <div id ="display">
+
+        </div>
+    </div>
+</body>
+<script>
+    const db1 = {
+        "1": { id: 1, sex: 'M', pic: '😎' },
+        "4": { id: 4, sex: 'F', pic: '😏' },
+        "6": { id: 6, sex: 'F', pic: '😜' },
+    }
+
+    const db2 = {
+        "2": { id: 2, sex: 'F', pic: '🤔'},
+        "5": { id: 5, sex: 'M', pic: '😕'},
+    }
+
+    const db3 = {
+        "3": { id: 3, sex: 'M', pic: '😂'},
+    }
+    
+    const metaServer = (uid) => {
+        const metaData = {
+            "1": "db1",
+            "2": "db2",
+            "3": "db3",
+            "4": "db1",
+            "5": "db2",
+            "6": "db1",
+        }
+    }
+    const privateInfor = (uid) => {
+        const userData = {
+            "1": { name: "Boupha", age: 18, private: false },
+            "2": { name: "Chakra", age: 22, private: true },
+            "3": { name: "Champey", age: 17, private: false },
+            "4": { name: "Dara", age: 20, private: false },
+            "5": { name: "Daevy", age: 19, private: true },
+            "6": { name: "Chhorvon", age: 22, private: false },
+        }
+
+        return new Promise((resolve, reject) => {
+            if (!userDate[uid]) {
+                return reject("User is not found~ 😥")
+            }
+            if(userDate[uid]['private']){
+                return reject("User's info cannot be shared~ 😑")
+            }
+            return resolve(userDate[uid])
+        })
+    }
+
+    const dbs = {db1: db1, db2: db2, db3: db3}
+    const db = {db1, db2, db3}
+    function findUser() {
+        // document.getElementById('display').innerHTML = metaData;
+        const uid = document.getElementById('user-id').value
+        const promiseAll = Promise.all([
+            metaServer(uid)
+                .then((db) => {
+                    console.log("User's info can be found in", db);
+                    return dbs[db][uid];
+                })
+                .catch((err) => {
+                    return Promise.reject(err)
+                }),
+            privateInfor(uid)
+                .then((uInfo) => {
+                    console.log("Private user's info is accessible 👌");
+                    return uInfo;
+                })
+                .catch((err) => {
+                    return Promise.reject(err)
+                })
+
+        ])
+        document.write(value);
+    }
+
+    function Display(value) {
+        document.getElementById("display").innerText = value;
+    }
+</script>
+</html>
