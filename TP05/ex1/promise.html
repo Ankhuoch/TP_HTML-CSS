@@ -20,7 +20,8 @@
         <input type="text" name = "userID" id="user-id">
         <button onclick="findUser()">Find</button>
         <div id ="display">
-
+            <div class="show">
+            </div>
         </div>
     </div>
 </body>
@@ -72,7 +73,6 @@
     }
 
     const dbs = {db1: db1, db2: db2, db3: db3}
-    const db = {db1, db2, db3}
     function findUser() {
         // document.getElementById('display').innerHTML = metaData;
         const uid = document.getElementById('user-id').value
@@ -83,7 +83,7 @@
                     return dbs[db][uid];
                 })
                 .catch((err) => {
-                    return Promise.reject(err)
+                    return Promise.reject(err);
                 }),
             privateInfor(uid)
                 .then((uInfo) => {
@@ -91,15 +91,27 @@
                     return uInfo;
                 })
                 .catch((err) => {
-                    return Promise.reject(err)
+                    return Promise.reject(err);
                 })
-
-        ])
-        document.write(value);
+        ]).then((result) => {
+            let div = document.getElementById('display')
+            div.innerHTML += `
+                <div class="show">
+                    <p>${result.value}</p>
+                </div>
+            `
+        })
+        .catch((err) => console.log(err));
     }
 
-    function Display(value) {
-        document.getElementById("display").innerText = value;
-    }
+    // function Display(db) {
+    //     let div = document.getElementById('display')
+
+    //     div.innerHTML += `
+    //         <div class="show">
+    //             <p>${db.uid}</p>
+    //         </div>
+    //     `
+    // }
 </script>
 </html>
